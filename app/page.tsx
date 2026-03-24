@@ -1,5 +1,6 @@
 'use client';
 
+// Atualização final para o Vercel - Correção de imagens e logo
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
@@ -85,10 +86,10 @@ export default function Home() {
       
       {/* HEADER */}
       <header className={`fixed top-0 w-full z-50 transition-all duration-700 ${isScrolled ? 'bg-tok-beige/90 backdrop-blur-xl py-4 shadow-sm' : 'bg-transparent py-8'}`}>
-        <div className="container mx-auto px-6 md:px-12 flex justify-between md:justify-center items-center relative">
+        <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
           
-          {/* LOGO CSS - MOBILE ONLY */}
-          <a href="#" className="md:hidden z-50 relative group">
+          {/* LOGO CSS (Mantido exatamente como aprovado) */}
+          <a href="#" className="z-50 relative group">
             <div className="relative flex flex-col items-center justify-center bg-[#0a0a0a] border border-[#D4AF37] rounded-tr-[16px] rounded-bl-[16px] px-5 py-2 overflow-hidden transition-transform duration-500 group-hover:scale-105 shadow-[0_0_15px_rgba(212,175,55,0.15)]">
               <div className="absolute inset-0 opacity-[0.04] bg-[repeating-linear-gradient(45deg,transparent,transparent_2px,#fff_2px,#fff_4px)]"></div>
               <div className="relative z-10 flex flex-col items-center">
@@ -98,36 +99,13 @@ export default function Home() {
             </div>
           </a>
           
-          {/* DESKTOP NAVIGATION WITH LOGO CENTERED */}
-          <nav className="hidden md:flex items-center gap-10 lg:gap-16 text-xs uppercase tracking-[0.2em] font-medium">
-            <a href="#sobre" className="hover:text-tok-gold transition-colors relative group overflow-hidden">
-              <span className="relative z-10">Sobre</span>
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-tok-gold transform -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500 ease-out"></span>
-            </a>
-            <a href="#projetos" className="hover:text-tok-gold transition-colors relative group overflow-hidden">
-              <span className="relative z-10">Projetos</span>
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-tok-gold transform -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500 ease-out"></span>
-            </a>
-
-            {/* LOGO CSS - DESKTOP */}
-            <a href="#" className="z-50 relative group mx-2 lg:mx-8">
-              <div className="relative flex flex-col items-center justify-center bg-[#0a0a0a] border border-[#D4AF37] rounded-tr-[16px] rounded-bl-[16px] px-5 py-2 overflow-hidden transition-transform duration-500 group-hover:scale-105 shadow-[0_0_15px_rgba(212,175,55,0.15)]">
-                <div className="absolute inset-0 opacity-[0.04] bg-[repeating-linear-gradient(45deg,transparent,transparent_2px,#fff_2px,#fff_4px)]"></div>
-                <div className="relative z-10 flex flex-col items-center">
-                  <span className="font-sans text-xl tracking-[0.15em] font-normal leading-none bg-gradient-to-r from-[#C5A059] via-[#F3E5AB] to-[#C5A059] bg-clip-text text-transparent">TOK</span>
-                  <span className="font-sans text-[8px] tracking-[0.3em] font-light mt-1 bg-gradient-to-r from-[#C5A059] via-[#F3E5AB] to-[#C5A059] bg-clip-text text-transparent">DESIGN</span>
-                </div>
-              </div>
-            </a>
-
-            <a href="#servicos" className="hover:text-tok-gold transition-colors relative group overflow-hidden">
-              <span className="relative z-10">Serviços</span>
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-tok-gold transform -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500 ease-out"></span>
-            </a>
-            <a href="#contato" className="hover:text-tok-gold transition-colors relative group overflow-hidden">
-              <span className="relative z-10">Contato</span>
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-tok-gold transform -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500 ease-out"></span>
-            </a>
+          <nav className="hidden md:flex gap-12 text-xs uppercase tracking-[0.2em] font-medium">
+            {['Sobre', 'Projetos', 'Serviços', 'Contato'].map((item) => (
+              <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-tok-gold transition-colors relative group overflow-hidden">
+                <span className="relative z-10">{item}</span>
+                <span className="absolute bottom-0 left-0 w-full h-[1px] bg-tok-gold transform -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500 ease-out"></span>
+              </a>
+            ))}
           </nav>
 
           <button className="md:hidden z-50 relative p-2 text-tok-black" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
