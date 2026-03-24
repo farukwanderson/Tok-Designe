@@ -76,9 +76,10 @@ export default function Home() {
   ];
 
   const services = [
-    { title: 'Cortinas e Persianas', desc: 'Controle de luminosidade com elegância e sob medida para seu espaço.' },
-    { title: 'Revestimentos', desc: 'Texturas exclusivas e sofisticadas para paredes e superfícies.' },
-    { title: 'Pisos Premium', desc: 'Vinílicos, laminados e carpetes de alto padrão de durabilidade.' },
+    { title: 'Persianas Sob Medida', desc: 'Controle de luminosidade, privacidade e design sofisticado para cada janela do seu projeto.' },
+    { title: 'Pisos Vinílicos', desc: 'Conforto térmico, acústica impecável e instalação rápida com acabamento premium.' },
+    { title: 'Projetos Residenciais', desc: 'Transformamos casas em lares através de curadoria especializada em decoração.' },
+    { title: 'Projetos Corporativos', desc: 'Ambientes de trabalho elegantes, funcionais e que refletem a identidade da sua marca.' },
   ];
 
   const brands = ['Tarkett', 'Belgotex', 'Santa Luzia', 'Columbia', 'Real', 'Eucafloor'];
@@ -174,11 +175,11 @@ export default function Home() {
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             >
               <span className="text-tok-gold text-xs md:text-sm uppercase tracking-[0.3em] font-bold mb-6 block drop-shadow-md md:drop-shadow-none">
-                Estúdio de Interiores
+                Design & Acabamentos
               </span>
-              <h1 className="font-serif text-[3.5rem] sm:text-7xl md:text-[110px] lg:text-[130px] leading-[1.05] md:leading-[0.9] tracking-tight text-tok-white md:text-tok-black mb-6 md:mb-8">
-                Design <br />
-                <span className="italic text-tok-gold font-light">com alma.</span>
+              <h1 className="font-serif text-[3.5rem] sm:text-7xl md:text-[100px] lg:text-[120px] leading-[1.05] md:leading-[0.9] tracking-tight text-tok-white md:text-tok-black mb-6 md:mb-8">
+                Transforme <br />
+                <span className="italic text-tok-gold font-light">seu espaço.</span>
               </h1>
             </motion.div>
             
@@ -186,9 +187,9 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1.2, delay: 0.4 }}
-              className="font-sans text-[15px] md:text-lg font-light tracking-wide mb-10 md:mb-12 max-w-md text-tok-white/90 md:text-tok-black/70 leading-[1.7] md:leading-relaxed drop-shadow-md md:drop-shadow-none"
+              className="font-sans text-[15px] md:text-lg font-light tracking-wide mb-10 md:mb-12 max-w-lg text-tok-white/90 md:text-tok-black/70 leading-[1.7] md:leading-relaxed drop-shadow-md md:drop-shadow-none"
             >
-              Curadoria de acabamentos e decoração de alto padrão para ambientes que inspiram e transformam.
+              Especialistas em persianas e pisos vinílicos sob medida. Projetos residenciais e corporativos com medição, fornecimento e instalação impecável.
             </motion.p>
             
             <motion.div
@@ -273,7 +274,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="text-xs uppercase tracking-[0.2em] text-tok-gold font-bold mb-6 block"
               >
-                O Estúdio
+                A Tok Design
               </motion.span>
               <motion.h2 
                 initial={{ opacity: 0, y: 40 }}
@@ -282,7 +283,7 @@ export default function Home() {
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                 className="font-serif text-[2.75rem] md:text-6xl lg:text-7xl leading-[1.1] md:leading-[1.05] mb-8 md:mb-10 tracking-tight"
               >
-                A essência <br/>do <span className="text-tok-gold italic font-light">bem viver.</span>
+                Excelência em <br/><span className="text-tok-gold italic font-light">cada detalhe.</span>
               </motion.h2>
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
@@ -291,7 +292,7 @@ export default function Home() {
                 transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                 className="font-sans text-[15px] md:text-lg text-tok-black/70 font-light leading-[1.8] md:leading-relaxed mb-8 md:mb-10"
               >
-                A TOK DESIGN cria ambientes que transcendem a estética. Somos especialistas em curadoria de acabamentos e decoração de alto padrão, entregando projetos que refletem a identidade e o estilo de vida de cada cliente, com precisão e exclusividade.
+                Somos referência em soluções completas para interiores. Do projeto à execução, oferecemos persianas exclusivas e pisos vinílicos de alta performance. Nosso compromisso é entregar ambientes residenciais e corporativos que unam estética, conforto e funcionalidade, cuidando de todas as etapas: medição, fornecimento e instalação.
               </motion.p>
               <motion.div
                 initial={{ opacity: 0 }}
@@ -407,13 +408,24 @@ export default function Home() {
           <div className="grid md:grid-cols-12 gap-16">
             
             <div className="md:col-span-4">
-              <span className="text-xs uppercase tracking-[0.2em] text-tok-gold font-bold mb-6 block">Expertise</span>
+              <span className="text-xs uppercase tracking-[0.2em] text-tok-gold font-bold mb-6 block">Nossos Serviços</span>
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.1] mb-8 tracking-tight">
-                Soluções <br/>sob medida.
+                Soluções <br/>completas.
               </h2>
-              <p className="text-tok-black/60 font-light leading-relaxed">
-                Trabalhamos com as melhores marcas do mercado para garantir acabamento impecável e durabilidade.
+              <p className="text-tok-black/60 font-light leading-relaxed mb-12">
+                Da medição precisa à instalação impecável. Cuidamos de cada etapa para garantir que seu projeto residencial ou corporativo seja executado com perfeição.
               </p>
+              
+              <div className="flex flex-col gap-4">
+                {['Medição Técnica', 'Fornecimento Premium', 'Instalação Especializada'].map((step, idx) => (
+                  <div key={idx} className="flex items-center gap-4 text-tok-black/80 font-medium tracking-wide">
+                    <div className="w-8 h-8 rounded-full border border-tok-gold flex items-center justify-center text-tok-gold text-xs">
+                      {idx + 1}
+                    </div>
+                    {step}
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div className="md:col-span-8">
@@ -477,15 +489,18 @@ export default function Home() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-4xl mx-auto relative z-10"
         >
+          <span className="text-tok-gold text-xs md:text-sm uppercase tracking-[0.3em] font-bold mb-8 block">
+            Solicite seu Orçamento
+          </span>
           <h2 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl leading-[0.9] mb-12 tracking-tight">
-            Seu projeto <br/><span className="text-tok-gold italic font-light">começa aqui.</span>
+            Pronto para <br/><span className="text-tok-gold italic font-light">renovar?</span>
           </h2>
           <a 
             href={WHATSAPP_LINK}
             target="_blank"
             className="group inline-flex items-center gap-6 border border-tok-beige/20 bg-transparent hover:bg-tok-gold hover:border-tok-gold hover:text-tok-black px-12 py-6 text-xs md:text-sm uppercase tracking-[0.2em] font-medium transition-all duration-500"
           >
-            Fale no WhatsApp <ArrowRight className="w-5 h-5 transform group-hover:translate-x-2 transition-transform" />
+            Falar com Especialista <ArrowRight className="w-5 h-5 transform group-hover:translate-x-2 transition-transform" />
           </a>
         </motion.div>
       </section>
