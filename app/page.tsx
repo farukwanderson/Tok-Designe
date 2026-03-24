@@ -6,6 +6,8 @@ import Image from 'next/image';
 import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
 import { Menu, X, ArrowRight, ArrowUpRight, MessageCircle, Instagram } from 'lucide-react';
 
+const MotionImage = motion.create(Image);
+
 const WHATSAPP_NUMBER = "5581989410925";
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento.`;
 
@@ -247,24 +249,20 @@ export default function Home() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                className="relative h-[120vw] md:h-[700px] w-full overflow-hidden"
+                className="relative h-[120vw] md:h-[700px] w-full overflow-hidden group"
               >
-                <motion.div
+                <MotionImage 
+                  src="/566526770_17865779706471962_6361482048050327975_n.webp"
+                  alt="Detalhe de decoração"
+                  fill
+                  className="object-cover"
+                  referrerPolicy="no-referrer"
                   initial={{ scale: 1 }}
-                  whileInView={{ scale: 1.08 }}
-                  whileHover={{ scale: 1.12 }}
+                  whileInView={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.08 }}
                   viewport={{ margin: "-50px" }}
-                  transition={{ duration: 1.5, ease: "easeOut" }}
-                  className="absolute inset-0 w-full h-full"
-                >
-                  <Image 
-                    src="/566526770_17865779706471962_6361482048050327975_n.webp"
-                    alt="Detalhe de decoração"
-                    fill
-                    className="object-cover"
-                    referrerPolicy="no-referrer"
-                  />
-                </motion.div>
+                  transition={{ duration: 2, ease: "easeOut" }}
+                />
               </motion.div>
             </div>
 
@@ -356,7 +354,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                  className={`relative overflow-hidden ${
+                  className={`relative overflow-hidden group ${
                     project.align === 'center' 
                       ? 'md:col-span-10 md:col-start-2 h-[60vh] md:h-[80vh]' 
                       : project.align === 'right'
@@ -364,22 +362,18 @@ export default function Home() {
                         : 'md:col-span-7 h-[50vh] md:h-[70vh] order-1'
                   }`}
                 >
-                  <motion.div
+                  <MotionImage 
+                    src={project.src}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                    referrerPolicy="no-referrer"
                     initial={{ scale: 1 }}
-                    whileInView={{ scale: 1.08 }}
-                    whileHover={{ scale: 1.12 }}
+                    whileInView={{ scale: 1.05 }}
+                    whileHover={{ scale: 1.08 }}
                     viewport={{ margin: "-50px" }}
-                    transition={{ duration: 1.5, ease: "easeOut" }}
-                    className="absolute inset-0 w-full h-full cursor-pointer"
-                  >
-                    <Image 
-                      src={project.src}
-                      alt={project.title}
-                      fill
-                      className="object-cover"
-                      referrerPolicy="no-referrer"
-                    />
-                  </motion.div>
+                    transition={{ duration: 2, ease: "easeOut" }}
+                  />
                 </motion.div>
 
                 {/* Text */}
