@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
 import { Menu, X, ArrowRight, ArrowUpRight, MessageCircle, Instagram } from 'lucide-react';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 const MotionImage = motion.create(Image);
 
@@ -76,19 +77,19 @@ export default function Home() {
   ];
 
   const services = [
-    { title: 'Persianas Sob Medida', desc: 'Controle de luminosidade, privacidade e design sofisticado para cada janela do seu projeto.' },
-    { title: 'Pisos Vinílicos', desc: 'Conforto térmico, acústica impecável e instalação rápida com acabamento premium.' },
-    { title: 'Projetos Residenciais', desc: 'Transformamos casas em lares através de curadoria especializada em decoração.' },
-    { title: 'Projetos Corporativos', desc: 'Ambientes de trabalho elegantes, funcionais e que refletem a identidade da sua marca.' },
+    { title: 'Persianas Sob Medida', desc: 'Controle de luminosidade, privacidade e design sofisticado para cada janela do seu projeto.', image: 'https://i.pinimg.com/736x/29/21/86/29218639d44e9dcdf907afad99fff8f2.jpg' },
+    { title: 'Pisos Vinílicos', desc: 'Conforto térmico, acústica impecável e instalação rápida com acabamento premium.', image: 'https://i.pinimg.com/736x/1e/60/36/1e6036b6717d2e6a9ebc6c7e049c1db7.jpg' },
+    { title: 'Projetos Residenciais', desc: 'Transformamos casas em lares através de curadoria especializada em decoração.', image: 'https://picsum.photos/seed/home/800/600' },
+    { title: 'Projetos Corporativos', desc: 'Ambientes de trabalho elegantes, funcionais e que refletem a identidade da sua marca.', image: 'https://picsum.photos/seed/office/800/600' },
   ];
 
   const brands = ['Tarkett', 'Belgotex', 'Santa Luzia', 'Columbia', 'Real', 'Eucafloor'];
 
   return (
-    <main className="min-h-screen bg-tok-beige text-tok-black font-sans selection:bg-tok-gold selection:text-tok-white overflow-x-hidden">
+    <main className="min-h-screen bg-white dark:bg-[#050505] text-black dark:text-white font-sans selection:bg-tok-gold selection:text-[#050505] overflow-x-hidden transition-colors duration-300">
       
       {/* HEADER */}
-      <header className={`fixed top-0 w-full z-50 transition-all duration-700 ${isScrolled ? 'bg-tok-beige/90 backdrop-blur-xl py-4 shadow-sm' : 'bg-transparent py-8'}`}>
+      <header className={`fixed top-0 w-full z-50 transition-all duration-700 ${isScrolled ? 'bg-white/90 dark:bg-[#050505]/90 backdrop-blur-xl py-4 shadow-sm border-b border-black/5 dark:border-white/5' : 'bg-transparent py-8'}`}>
         <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
           
           {/* LOGO CSS (Mantido exatamente como aprovado) */}
@@ -102,18 +103,22 @@ export default function Home() {
             </div>
           </a>
           
-          <nav className="hidden md:flex gap-12 text-xs uppercase tracking-[0.2em] font-medium">
+          <nav className="hidden md:flex items-center gap-12 text-xs uppercase tracking-[0.2em] font-medium text-black/80 dark:text-white/80 transition-colors">
             {['Sobre', 'Projetos', 'Serviços', 'Contato'].map((item) => (
               <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-tok-gold transition-colors relative group overflow-hidden">
                 <span className="relative z-10">{item}</span>
                 <span className="absolute bottom-0 left-0 w-full h-[1px] bg-tok-gold transform -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-500 ease-out"></span>
               </a>
             ))}
+            <ThemeToggle />
           </nav>
 
-          <button className="md:hidden z-50 relative p-2 text-tok-black" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
-          </button>
+          <div className="md:hidden flex items-center gap-4 z-50 relative">
+            <ThemeToggle />
+            <button className="p-2 text-black dark:text-white transition-colors" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              {mobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+            </button>
+          </div>
         </div>
       </header>
 
@@ -125,7 +130,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="fixed inset-0 bg-tok-beige z-40 flex flex-col items-center justify-center gap-10"
+            className="fixed inset-0 bg-white dark:bg-[#050505] z-40 flex flex-col items-center justify-center gap-10"
           >
             {['Sobre', 'Projetos', 'Serviços', 'Contato'].map((item, i) => (
               <motion.a 
@@ -135,7 +140,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 + 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 onClick={() => setMobileMenuOpen(false)}
-                className="font-serif text-5xl hover:text-tok-gold transition-colors italic"
+                className="font-serif text-5xl hover:text-tok-gold transition-colors italic text-black dark:text-white"
               >
                 {item}
               </motion.a>
@@ -145,7 +150,7 @@ export default function Home() {
       </AnimatePresence>
 
       {/* HERO (BEHANCE EDITORIAL STYLE) */}
-      <section ref={heroRef} className="relative h-screen w-full flex items-center bg-tok-beige overflow-hidden">
+      <section ref={heroRef} className="relative h-screen w-full flex items-center bg-white dark:bg-[#050505] overflow-hidden transition-colors duration-300">
         
         {/* Right Image Container */}
         <div className="absolute top-0 right-0 w-full md:w-[65%] h-full overflow-hidden z-0">
@@ -162,7 +167,7 @@ export default function Home() {
               referrerPolicy="no-referrer"
             />
             {/* Dark gradient overlay on mobile for text readability, subtle on desktop */}
-            <div className="absolute inset-0 bg-gradient-to-t from-tok-black/90 via-tok-black/40 to-transparent md:bg-gradient-to-r md:from-tok-beige md:via-tok-beige/20 md:to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/40 to-transparent md:bg-gradient-to-r md:from-white md:via-white/80 md:to-transparent dark:from-[#050505]/90 dark:via-[#050505]/40 dark:md:from-[#050505] dark:md:via-[#050505]/80 transition-colors duration-300"></div>
           </motion.div>
         </div>
 
@@ -174,12 +179,12 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             >
-              <span className="text-tok-gold text-xs md:text-sm uppercase tracking-[0.3em] font-bold mb-6 block drop-shadow-md md:drop-shadow-none">
+              <span className="text-tok-gold text-xs md:text-sm uppercase tracking-[0.3em] font-bold mb-6 block drop-shadow-md">
                 Design & Acabamentos
               </span>
-              <h1 className="font-serif text-[3.5rem] sm:text-7xl md:text-[100px] lg:text-[120px] leading-[1.05] md:leading-[0.9] tracking-tight text-tok-white md:text-tok-black mb-6 md:mb-8">
+              <h1 className="font-serif text-[3.5rem] sm:text-7xl md:text-[100px] lg:text-[120px] leading-[1.05] md:leading-[0.9] tracking-tight text-black dark:text-white mb-6 md:mb-8 drop-shadow-lg">
                 Transforme <br />
-                <span className="italic text-tok-gold font-light">seu espaço.</span>
+                <span className="italic text-tok-gold font-light drop-shadow-[0_0_15px_rgba(212,175,55,0.3)]">seu espaço.</span>
               </h1>
             </motion.div>
             
@@ -187,7 +192,7 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1.2, delay: 0.4 }}
-              className="font-sans text-[15px] md:text-lg font-light tracking-wide mb-10 md:mb-12 max-w-lg text-tok-white/90 md:text-tok-black/70 leading-[1.7] md:leading-relaxed drop-shadow-md md:drop-shadow-none"
+              className="font-sans text-[15px] md:text-lg font-light tracking-wide mb-10 md:mb-12 max-w-lg text-black/90 dark:text-white/90 leading-[1.7] md:leading-relaxed drop-shadow-md"
             >
               Especialistas em persianas e pisos vinílicos sob medida. Projetos residenciais e corporativos com medição, fornecimento e instalação impecável.
             </motion.p>
@@ -200,7 +205,7 @@ export default function Home() {
               <a 
                 href={WHATSAPP_LINK}
                 target="_blank"
-                className="group inline-flex items-center gap-4 border-b border-tok-white md:border-tok-black pb-2 text-xs md:text-sm uppercase tracking-[0.2em] font-medium text-tok-white md:text-tok-black hover:text-tok-gold hover:border-tok-gold transition-all duration-300 drop-shadow-md md:drop-shadow-none"
+                className="group inline-flex items-center gap-4 border-b border-black/50 dark:border-white/50 pb-2 text-xs md:text-sm uppercase tracking-[0.2em] font-medium text-black dark:text-white hover:text-tok-gold hover:border-tok-gold transition-all duration-300 drop-shadow-md"
               >
                 Descubra a Tok <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </a>
@@ -215,9 +220,9 @@ export default function Home() {
           transition={{ delay: 1, duration: 1 }}
           className="hidden md:flex absolute right-12 top-1/2 -translate-y-1/2 flex-col items-center gap-8 z-20"
         >
-          <a href="https://instagram.com/_tokdesign" target="_blank" className="text-tok-white text-[10px] uppercase tracking-[0.3em] hover:text-tok-gold transition-colors" style={{ writingMode: 'vertical-rl' }}>Instagram</a>
-          <div className="w-[1px] h-12 bg-tok-white/30"></div>
-          <a href={WHATSAPP_LINK} target="_blank" className="text-tok-white text-[10px] uppercase tracking-[0.3em] hover:text-tok-gold transition-colors" style={{ writingMode: 'vertical-rl' }}>WhatsApp</a>
+          <a href="https://instagram.com/_tokdesign" target="_blank" className="text-black dark:text-white text-[10px] uppercase tracking-[0.3em] hover:text-tok-gold transition-colors" style={{ writingMode: 'vertical-rl' }}>Instagram</a>
+          <div className="w-[1px] h-12 bg-black/30 dark:bg-white/30"></div>
+          <a href={WHATSAPP_LINK} target="_blank" className="text-black dark:text-white text-[10px] uppercase tracking-[0.3em] hover:text-tok-gold transition-colors" style={{ writingMode: 'vertical-rl' }}>WhatsApp</a>
         </motion.div>
 
         {/* Scroll Indicator */}
@@ -225,14 +230,13 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
-          className="hidden md:flex absolute bottom-10 left-12 flex-col items-center gap-4 z-20 text-tok-black"
+          className="hidden md:flex absolute bottom-10 left-1/2 -translate-x-1/2 flex-col items-center gap-4 z-20 text-black dark:text-white"
         >
-          <span className="text-[10px] uppercase tracking-[0.3em]" style={{ writingMode: 'vertical-rl' }}>Scroll</span>
-          <div className="w-[1px] h-12 bg-tok-black/30 relative overflow-hidden">
+          <div className="w-[1px] h-12 bg-black/30 dark:bg-white/30 relative overflow-hidden">
             <motion.div 
               animate={{ y: ['-100%', '100%'] }}
               transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
-              className="absolute top-0 left-0 w-full h-full bg-tok-black"
+              className="absolute top-0 left-0 w-full h-full bg-black dark:bg-white"
             />
           </div>
         </motion.div>
@@ -240,7 +244,7 @@ export default function Home() {
       </section>
 
       {/* ABOUT (ASYMMETRIC LAYOUT) */}
-      <section id="sobre" className="py-24 md:py-48 bg-tok-white">
+      <section id="sobre" className="py-24 md:py-48 bg-gray-50 dark:bg-[#0A0A0A] transition-colors duration-300">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8 items-center">
             
@@ -250,13 +254,13 @@ export default function Home() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                className="relative h-[120vw] md:h-[700px] w-full overflow-hidden group"
+                className="relative h-[120vw] md:h-[700px] w-full overflow-hidden group border border-black/5 dark:border-white/5 rounded-sm"
               >
                 <MotionImage 
                   src="/566526770_17865779706471962_6361482048050327975_n.webp"
                   alt="Detalhe de decoração"
                   fill
-                  className="object-cover"
+                  className="object-cover opacity-80 group-hover:opacity-100"
                   referrerPolicy="no-referrer"
                   initial={{ scale: 1 }}
                   whileInView={{ scale: 1.05 }}
@@ -272,7 +276,7 @@ export default function Home() {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="text-xs uppercase tracking-[0.2em] text-tok-gold font-bold mb-6 block"
+                className="text-xs uppercase tracking-[0.2em] text-tok-gold font-bold mb-6 block drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]"
               >
                 A Tok Design
               </motion.span>
@@ -281,7 +285,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="font-serif text-[2.75rem] md:text-6xl lg:text-7xl leading-[1.1] md:leading-[1.05] mb-8 md:mb-10 tracking-tight"
+                className="font-serif text-[2.75rem] md:text-6xl lg:text-7xl leading-[1.1] md:leading-[1.05] mb-8 md:mb-10 tracking-tight text-black dark:text-white"
               >
                 Excelência em <br/><span className="text-tok-gold italic font-light">cada detalhe.</span>
               </motion.h2>
@@ -290,7 +294,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="font-sans text-[15px] md:text-lg text-tok-black/70 font-light leading-[1.8] md:leading-relaxed mb-8 md:mb-10"
+                className="font-sans text-[15px] md:text-lg text-black/60 dark:text-white/60 font-light leading-[1.8] md:leading-relaxed mb-8 md:mb-10"
               >
                 Somos referência em soluções completas para interiores. Do projeto à execução, oferecemos persianas exclusivas e pisos vinílicos de alta performance. Nosso compromisso é entregar ambientes residenciais e corporativos que unam estética, conforto e funcionalidade, cuidando de todas as etapas: medição, fornecimento e instalação.
               </motion.p>
@@ -305,7 +309,7 @@ export default function Home() {
                   alt="Textura" 
                   width={200} 
                   height={100} 
-                  className="opacity-50 grayscale"
+                  className="opacity-90 rounded-sm border border-black/5 dark:border-white/5"
                   referrerPolicy="no-referrer"
                 />
               </motion.div>
@@ -316,7 +320,7 @@ export default function Home() {
       </section>
 
       {/* PROJECTS (EDITORIAL GALLERY) */}
-      <section id="projetos" className="py-32 md:py-48 bg-tok-beige">
+      <section id="projetos" className="py-32 md:py-48 bg-white dark:bg-[#050505] transition-colors duration-300">
         <div className="container mx-auto px-6 md:px-12">
           
           <div className="flex flex-col md:flex-row justify-between items-end mb-24 md:mb-40 gap-8">
@@ -325,7 +329,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1 }}
-              className="font-serif text-5xl md:text-7xl leading-[1.1]"
+              className="font-serif text-5xl md:text-7xl leading-[1.1] text-black dark:text-white"
             >
               Projetos <br/><span className="italic text-tok-gold">Selecionados</span>
             </motion.h2>
@@ -335,7 +339,7 @@ export default function Home() {
               viewport={{ once: true }}
               href="https://instagram.com/_tokdesign" 
               target="_blank" 
-              className="text-xs uppercase tracking-[0.2em] font-medium border-b border-tok-black pb-1 hover:text-tok-gold hover:border-tok-gold transition-colors"
+              className="text-xs uppercase tracking-[0.2em] font-medium border-b border-black/30 dark:border-white/30 text-black/70 dark:text-white/70 pb-1 hover:text-tok-gold hover:border-tok-gold transition-colors"
             >
               Ver Portfólio Completo
             </motion.a>
@@ -355,7 +359,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                  className={`relative overflow-hidden group ${
+                  className={`relative overflow-hidden group border border-black/5 dark:border-white/5 rounded-sm ${
                     project.align === 'center' 
                       ? 'md:col-span-10 md:col-start-2 h-[60vh] md:h-[80vh]' 
                       : project.align === 'right'
@@ -367,7 +371,7 @@ export default function Home() {
                     src={project.src}
                     alt={project.title}
                     fill
-                    className="object-cover"
+                    className="object-cover opacity-80 group-hover:opacity-100"
                     referrerPolicy="no-referrer"
                     initial={{ scale: 1 }}
                     whileInView={{ scale: 1.05 }}
@@ -375,6 +379,7 @@ export default function Home() {
                     viewport={{ margin: "-50px" }}
                     transition={{ duration: 2, ease: "easeOut" }}
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/60 dark:from-[#050505]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </motion.div>
 
                 {/* Text */}
@@ -391,9 +396,9 @@ export default function Home() {
                         : 'md:col-span-4 md:col-start-9 order-2'
                   }`}
                 >
-                  <span className="text-tok-gold text-2xl md:text-3xl font-serif italic mb-4 block">{project.id}</span>
-                  <h3 className="text-3xl md:text-4xl font-serif mb-4">{project.title}</h3>
-                  <p className="text-tok-black/50 uppercase tracking-[0.15em] text-xs font-medium">{project.category}</p>
+                  <span className="text-tok-gold text-2xl md:text-3xl font-serif italic mb-4 block drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]">{project.id}</span>
+                  <h3 className="text-3xl md:text-4xl font-serif mb-4 text-black dark:text-white">{project.title}</h3>
+                  <p className="text-black/40 dark:text-white/40 uppercase tracking-[0.15em] text-xs font-medium">{project.category}</p>
                 </motion.div>
               </div>
             ))}
@@ -403,23 +408,23 @@ export default function Home() {
       </section>
 
       {/* SERVICES (MINIMALIST ACCORDION/LIST) */}
-      <section id="servicos" className="py-32 md:py-48 bg-tok-white">
+      <section id="servicos" className="py-32 md:py-48 bg-gray-50 dark:bg-[#0A0A0A] transition-colors duration-300">
         <div className="container mx-auto px-6 md:px-12 max-w-[1200px]">
           <div className="grid md:grid-cols-12 gap-16">
             
             <div className="md:col-span-4">
-              <span className="text-xs uppercase tracking-[0.2em] text-tok-gold font-bold mb-6 block">Nossos Serviços</span>
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.1] mb-8 tracking-tight">
+              <span className="text-xs uppercase tracking-[0.2em] text-tok-gold font-bold mb-6 block drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]">Nossos Serviços</span>
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.1] mb-8 tracking-tight text-black dark:text-white">
                 Soluções <br/>completas.
               </h2>
-              <p className="text-tok-black/60 font-light leading-relaxed mb-12">
+              <p className="text-black/60 dark:text-white/60 font-light leading-relaxed mb-12">
                 Da medição precisa à instalação impecável. Cuidamos de cada etapa para garantir que seu projeto residencial ou corporativo seja executado com perfeição.
               </p>
               
               <div className="flex flex-col gap-4">
                 {['Medição Técnica', 'Fornecimento Premium', 'Instalação Especializada'].map((step, idx) => (
-                  <div key={idx} className="flex items-center gap-4 text-tok-black/80 font-medium tracking-wide">
-                    <div className="w-8 h-8 rounded-full border border-tok-gold flex items-center justify-center text-tok-gold text-xs">
+                  <div key={idx} className="flex items-center gap-4 text-black/80 dark:text-white/80 font-medium tracking-wide">
+                    <div className="w-8 h-8 rounded-full border border-tok-gold flex items-center justify-center text-tok-gold text-xs shadow-[0_0_10px_rgba(212,175,55,0.2)]">
                       {idx + 1}
                     </div>
                     {step}
@@ -429,7 +434,7 @@ export default function Home() {
             </div>
 
             <div className="md:col-span-8">
-              <div className="grid grid-cols-1 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {services.map((service, i) => (
                   <motion.div 
                     key={i}
@@ -437,10 +442,28 @@ export default function Home() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
                     transition={{ duration: 0.8, delay: i * 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
-                    className="group bg-white border border-tok-black/5 p-8 md:p-12 hover:shadow-[0_15px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:border-tok-gold/30 transition-all duration-500 cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-6"
+                    className="group relative overflow-hidden rounded-sm border border-black/5 dark:border-white/5 bg-black hover:border-tok-gold/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.15)] transition-all duration-500 min-h-[360px] md:min-h-[420px] flex flex-col justify-end p-8 cursor-pointer"
                   >
-                    <h3 className="font-serif text-3xl md:text-4xl group-hover:text-tok-gold transition-colors">{service.title}</h3>
-                    <p className="text-tok-black/50 font-light max-w-sm text-sm md:text-base leading-relaxed">{service.desc}</p>
+                    {/* Background Image */}
+                    <div className="absolute inset-0 z-0">
+                      <Image 
+                        src={service.image} 
+                        alt={service.title} 
+                        fill 
+                        className="object-cover opacity-60 group-hover:opacity-80 group-hover:scale-110 transition-all duration-700"
+                        referrerPolicy="no-referrer"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-colors duration-300"></div>
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="relative z-10 transform group-hover:-translate-y-2 transition-transform duration-500">
+                      <div className="w-10 h-10 rounded-full border border-tok-gold/50 flex items-center justify-center text-tok-gold text-sm font-serif italic mb-6 backdrop-blur-md bg-black/40">
+                        0{i + 1}
+                      </div>
+                      <h3 className="font-serif text-2xl md:text-3xl text-white mb-3 group-hover:text-tok-gold transition-colors">{service.title}</h3>
+                      <p className="text-white/70 font-light text-sm leading-relaxed">{service.desc}</p>
+                    </div>
                   </motion.div>
                 ))}
               </div>
@@ -451,14 +474,14 @@ export default function Home() {
       </section>
 
       {/* BRANDS */}
-      <section className="py-24 md:py-32 bg-tok-beige overflow-hidden border-y border-tok-black/5">
+      <section className="py-24 md:py-32 bg-white dark:bg-[#050505] overflow-hidden border-y border-black/5 dark:border-white/5 transition-colors duration-300">
         <div className="container mx-auto px-6 md:px-12 mb-12 md:mb-16 text-center">
-          <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-tok-black/40 font-medium">Marcas Parceiras</span>
+          <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-black/40 dark:text-white/40 font-medium">Marcas Parceiras</span>
         </div>
         <div className="relative w-full flex overflow-hidden">
           {/* Left/Right Gradient Masks for smooth fade */}
-          <div className="absolute top-0 left-0 w-24 md:w-64 h-full bg-gradient-to-r from-tok-beige to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute top-0 right-0 w-24 md:w-64 h-full bg-gradient-to-l from-tok-beige to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute top-0 left-0 w-24 md:w-64 h-full bg-gradient-to-r from-white dark:from-[#050505] to-transparent z-10 pointer-events-none transition-colors duration-300"></div>
+          <div className="absolute top-0 right-0 w-24 md:w-64 h-full bg-gradient-to-l from-white dark:from-[#050505] to-transparent z-10 pointer-events-none transition-colors duration-300"></div>
           
           <motion.div 
             className="flex whitespace-nowrap items-center"
@@ -468,7 +491,7 @@ export default function Home() {
             {[...brands, ...brands, ...brands, ...brands].map((brand, i) => (
               <span 
                 key={i} 
-                className="font-serif text-3xl md:text-5xl tracking-widest text-tok-black/20 hover:text-tok-gold transition-colors duration-500 cursor-default mx-8 md:mx-16"
+                className="font-serif text-3xl md:text-5xl tracking-widest text-black/20 dark:text-white/20 hover:text-tok-gold transition-colors duration-500 cursor-default mx-8 md:mx-16"
               >
                 {brand}
               </span>
@@ -478,9 +501,9 @@ export default function Home() {
       </section>
 
       {/* CTA FINAL (IMPACT) */}
-      <section id="contato" className="py-32 md:py-48 bg-tok-black text-tok-beige text-center px-6 relative overflow-hidden">
+      <section id="contato" className="py-32 md:py-48 bg-gray-50 dark:bg-[#0A0A0A] text-black dark:text-white text-center px-6 relative overflow-hidden border-t border-black/5 dark:border-white/5 transition-colors duration-300">
         {/* Subtle background glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-tok-gold/5 rounded-full blur-[120px] pointer-events-none"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-tok-gold/10 rounded-full blur-[120px] pointer-events-none"></div>
         
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -498,7 +521,7 @@ export default function Home() {
           <a 
             href={WHATSAPP_LINK}
             target="_blank"
-            className="group inline-flex items-center gap-6 border border-tok-beige/20 bg-transparent hover:bg-tok-gold hover:border-tok-gold hover:text-tok-black px-12 py-6 text-xs md:text-sm uppercase tracking-[0.2em] font-medium transition-all duration-500"
+            className="group inline-flex items-center gap-6 border border-tok-gold/30 bg-tok-gold/5 hover:bg-tok-gold hover:border-tok-gold hover:text-[#050505] hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] px-12 py-6 text-xs md:text-sm uppercase tracking-[0.2em] font-medium transition-all duration-500 rounded-full backdrop-blur-sm"
           >
             Falar com Especialista <ArrowRight className="w-5 h-5 transform group-hover:translate-x-2 transition-transform" />
           </a>
@@ -506,7 +529,7 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-tok-black text-tok-beige/50 pt-16 pb-32 md:py-16 px-6 md:px-12 border-t border-white/5">
+      <footer className="bg-white dark:bg-[#030303] text-black/50 dark:text-white/50 pt-16 pb-32 md:py-16 px-6 md:px-12 border-t border-black/5 dark:border-white/5 transition-colors duration-300">
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
           
           {/* LOGO CSS REPLICADO NO RODAPÉ */}
@@ -522,7 +545,7 @@ export default function Home() {
             <a 
               href="https://instagram.com/_tokdesign" 
               target="_blank" 
-              className="text-tok-beige/50 hover:text-tok-gold transition-colors duration-300 group"
+              className="text-black/50 dark:text-white/50 hover:text-tok-gold transition-colors duration-300 group"
               aria-label="Instagram"
             >
               <Instagram className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
@@ -530,7 +553,7 @@ export default function Home() {
             <a 
               href={WHATSAPP_LINK} 
               target="_blank" 
-              className="text-tok-beige/50 hover:text-tok-gold transition-colors duration-300 group"
+              className="text-black/50 dark:text-white/50 hover:text-tok-gold transition-colors duration-300 group"
               aria-label="WhatsApp"
             >
               <MessageCircle className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
@@ -554,11 +577,11 @@ export default function Home() {
         transition={{ delay: 1.5, duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
         whileHover={{ y: -5 }}
         whileTap={{ scale: 0.95 }}
-        className="group fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 flex items-center gap-3 bg-tok-black/95 backdrop-blur-xl text-tok-white border border-tok-gold/30 rounded-full shadow-[0_10px_40px_rgba(0,0,0,0.3)] hover:bg-tok-gold hover:text-tok-black hover:border-tok-gold hover:shadow-[0_10px_40px_rgba(212,175,55,0.3)] transition-all duration-500 overflow-hidden pr-5 pl-2 py-2"
+        className="group fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 flex items-center gap-3 bg-white/95 dark:bg-[#111111]/95 backdrop-blur-xl text-black dark:text-white border border-tok-gold/30 rounded-full shadow-[0_10px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.5)] hover:bg-tok-gold hover:text-white dark:hover:text-[#030303] hover:border-tok-gold hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] transition-all duration-500 overflow-hidden pr-5 pl-2 py-2"
         aria-label="Fale conosco no WhatsApp"
       >
-        <div className="relative flex items-center justify-center w-10 h-10 bg-tok-gold/10 group-hover:bg-tok-black/10 rounded-full transition-colors duration-500">
-          <MessageCircle className="w-5 h-5 text-tok-gold group-hover:text-tok-black transition-colors duration-500" />
+        <div className="relative flex items-center justify-center w-10 h-10 bg-tok-gold/10 group-hover:bg-white/10 dark:group-hover:bg-[#050505]/10 rounded-full transition-colors duration-500">
+          <MessageCircle className="w-5 h-5 text-tok-gold group-hover:text-white dark:group-hover:text-[#050505] transition-colors duration-500" />
           <span className="absolute inset-0 rounded-full border border-tok-gold/50 animate-ping opacity-30 group-hover:opacity-0" style={{ animationDuration: '3s' }}></span>
         </div>
         <span className="font-sans text-[10px] md:text-xs uppercase tracking-[0.2em] font-medium">
